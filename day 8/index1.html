@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Result</title>
+
+</head>
+
+
+<body style=" background-color: white">
+<h1 style="text-align:center; margin:0;padding:5px;background-color:#3F51A3;color:#fff;  ">
+    Synerzip Student Record
+</h1>
+<form id=form1 name="form1" action="#" onsubmit="return false;">
+    <div style=" width: 100%; height: 100%;min-height: 100% !important">
+
+        <div style="width: 25%; height: 100%;float : left; box-shadow: 1px 1px 16px #888888">
+
+            <div style="padding-top: 5%">
+                <div>
+                    <label style=" padding-left: 8%; width: 30%; display: inline-block;" for="email">Name: </label>
+                    <input style="box-shadow: 1px 1px 1px #ffffff; width: 50%; display: inline-block;" type="text"
+                           value="John" name="studentName" min="1" required onkeyup="checkName(event)">
+                </div>
+                <div id="errorName" style="padding-left: 40%; color: Red; visibility: hidden">* Mandatory field </div>
+
+            </div>
+
+            <div style="padding-top: 5%">
+                <div>
+                    <label style="padding-left: 8%; width: 30%; display: inline-block;" for="email">Roll No: </label>
+                    <input style="box-shadow: 1px 1px 1px #ffffff; width: 50%; display: inline-block;" type="number"
+                           value="1" name="roll" maxlength="5" required onkeyup="checkName(event)">
+                </div>
+                <div id="errorRoll" style="padding-left: 40%; color: Red;  visibility: hidden">* Mandatory field</div>
+            </div>
+
+            <div style="padding-top: 5%">
+
+                <div>
+                    <label style="padding-left: 8%; width: 30%; display: inline-block;" for="email">Maths</label>
+                    <input style="box-shadow: 1px 1px 1px #ffffff; width: 50%; display: inline-block;" type="number"
+                           value="22" name="maths" min="0" max="100" required onkeyup="checkName(event)">
+                </div>
+                <div id="errorMaths" style="padding-left: 40%; color: Red;  visibility: hidden">* marks should be less then 100</div>
+            </div>
+
+
+            <div style="padding-top: 5%">
+                <div>
+                     <label style="padding-left: 8%; width: 30%; display: inline-block;" for="email">English: </label>
+                     <input style="box-shadow: 1px 1px 1px #ffffff; width: 50%; display: inline-block;" type="number"
+                            value="33" name="english" min="0" max="100" required onkeyup="checkName(event)">
+                </div>
+                <div id="errorEnglish" style="padding-left: 40%; color: Red;  visibility: hidden">* marks should be less then 100</div>
+            </div>
+
+
+            <div style="padding-top: 5%">
+                <div>
+                            <label style="padding-left: 8%; width: 30%; display: inline-block;" for="email">Hindi: </label>
+                            <input style="box-shadow: 1px 1px 1px #ffffff; width: 50%; display: inline-block;" type="number"
+                                   value="77"    name="hindi" min="0" max="100" maxlength="3" required onkeyup="checkName(event)">
+                </div>
+                <div id="errorHindi" style="padding-left: 40%; color: Red;  visibility: hidden">* marks should be less then 100</div>
+            </div>
+
+
+            <div style="padding-top: 5%">
+                <div>
+
+                        <label style=" padding-left: 8%; width: 30%; display: inline-block;" for="email">Science: </label>
+                        <input style="box-shadow: 1px 1px 1px #ffffff; width: 50%; display: inline-block;" type="number"
+                               value="99"  name="science" min="0" max="100" maxlength="3" required onkeyup="checkName(event)">
+                </div>
+                <div id="errorScience" style="padding-left: 40%; color: Red;  visibility: hidden">* marks should be less then 100</div>
+            </div>
+
+
+            <div style="padding-top: 5%">
+                <div>
+                        <label style=" padding-left: 8%; width: 30%; display: inline-block;" for="email">History: </label>
+                        <input style="box-shadow: 1px 1px 1px #ffffff; width: 50%; display: inline-block;" type="number"
+                               value="66" name="history" min="0" max="100" maxlength="3" required onkeyup="checkName(event)">
+                </div>
+                <div id="errorHistory" style="padding-left: 40%; color: Red;  visibility: hidden">* marks should be less then 100</div>
+            </div>
+
+            <p>
+                <button id="saveButton" class="savebutton" type="button" onclick="saveData()">Save</button>
+                <button id="Button" class="cancelbutton"  type="button" onclick="myFunction()">Reset</button>
+            </p>
+
+
+        </div>
+        <div  id = "containerDiv" style="width: 75%; height: 100%;float : right;margin-right: auto; margin-left: auto;">
+
+        </div>
+
+        </div>
+</form>
+
+
+</body>
+
+<script>
+    var isAdded = false;
+    var studentArray = [];
+
+    function myFunction() {
+        document.form1.elements["studentName"].value = "";
+        document.form1.elements["roll"].value = "";
+        document.form1.elements["maths"].value = "";
+        document.form1.elements["english"].value = "";
+        document.form1.elements["hindi"].value = "";
+        document.form1.elements["science"].value = "";
+        document.form1.elements["history"].value = "";
+
+    }
+
+
+    function checkName(e) {
+        document.getElementById('errorName').style.visibility = "hidden";
+        document.getElementById('errorRoll').style.visibility = "hidden";
+        document.getElementById('errorMaths').style.visibility = "hidden";
+        document.getElementById('errorEnglish').style.visibility = "hidden";
+        document.getElementById('errorHindi').style.visibility = "hidden";
+        document.getElementById('errorScience').style.visibility = "hidden";
+        document.getElementById('errorHistory').style.visibility = "hidden";
+      /* //debugger;
+        var name = e.target;
+
+        if (!name.checkValidity()) {
+            document.getElementById('errorName').style.visibility = "visible";
+
+        } else {
+            document.getElementById('errorName').style.visibility = "hidden";
+        }
+        */
+
+    }
+
+    function saveData() {
+        var saveDisabled = false;
+        if(!document.form1.elements["studentName"].checkValidity()){
+            document.getElementById('errorName').style.visibility = "visible";
+            saveDisabled  = true;
+        }
+
+        if(!document.form1.elements["roll"].checkValidity()){
+            document.getElementById('errorRoll').style.visibility = "visible";
+            saveDisabled  = true;
+        }
+
+        if(!document.form1.elements["maths"].checkValidity()){
+            document.getElementById('errorMaths').style.visibility = "visible";
+            saveDisabled  = true;
+        }
+
+        if(!document.form1.elements["english"].checkValidity()){
+            document.getElementById('errorEnglish').style.visibility = "visible";
+            saveDisabled  = true;
+        }
+
+        if(!document.form1.elements["hindi"].checkValidity()){
+            document.getElementById('errorHindi').style.visibility = "visible";
+            saveDisabled  = true;
+        }
+        if(!document.form1.elements["science"].checkValidity()){
+            document.getElementById('errorScience').style.visibility = "visible";
+            saveDisabled  = true;
+        }
+        if(!document.form1.elements["history"].checkValidity()){
+            document.getElementById('errorHistory').style.visibility = "visible";
+            saveDisabled  = true;
+        }
+
+        if(!saveDisabled) {
+            var stuNameValue, mobValue, rollValue, mathsValue, englishValue, hindiValue, scienceValue, geographyValue,
+                historyValue;
+            stuNameValue = document.form1.elements["studentName"].value;
+            rollValue = document.form1.elements["roll"].value;
+            mathsValue = document.form1.elements["maths"].value + "(" + typemessage(document.form1.elements["maths"].value) + ")";
+            englishValue = document.form1.elements["english"].value + "(" + typemessage(document.form1.elements["english"].value) + ")";
+            hindiValue = document.form1.elements["hindi"].value + "(" + typemessage(document.form1.elements["hindi"].value) + ")";
+            scienceValue = document.form1.elements["science"].value + "(" + typemessage(document.form1.elements["science"].value) + ")";
+            historyValue = document.form1.elements["history"].value + "(" + typemessage(document.form1.elements["history"].value) + ")";
+            var obj = {
+                "index": "",
+                "roll": rollValue,
+                "studentName": stuNameValue,
+                "maths": mathsValue,
+                "english": englishValue,
+                "hindi": hindiValue,
+                "science": scienceValue,
+                "history": historyValue,
+                "action": ""
+            }
+            if (studentArray.length <= 0) {
+                studentArray.push(obj)
+            }
+            else {
+
+                for (var i = 0; i < studentArray.length; i++) {
+
+                    if (studentArray[i].roll == obj.roll) {
+                        studentArray[i].studentName = obj.studentName;
+                        studentArray[i].maths = obj.maths;
+                        studentArray[i].english = obj.english;
+                        studentArray[i].hindi = obj.hindi;
+                        studentArray[i].science = obj.science;
+                        studentArray[i].history = obj.history;
+                        isAdded = true;
+                        break;
+                    }
+
+                }
+                if (!isAdded) {
+                    studentArray.push(obj)
+
+                }
+                else {
+                    isAdded = false;
+                }
+            }
+
+            self.updateList()
+            self.myFunction()
+        }
+        else{
+
+        }
+    }
+
+    function typemessage(value) {
+
+        console.log(value + 1);
+        return value + 1;
+    }
+
+    function typemessage(marks) {
+
+        if (marks >= 80 && marks <= 100) {
+            grade = "A+";
+        }
+        else if (marks >= 60 && marks <= 79) {
+            grade = "A";
+        }
+        else if (marks >= 50 && marks <= 59) {
+            grade = "B";
+        }
+        else if (marks > 40 && marks <= 49) {
+            grade = "C";
+        }
+        else if (marks == 40) {
+            grade = "D";
+        }
+        else if (marks >= 0 && marks < 40) {
+            grade = "Fail";
+        }
+        return grade
+
+    }
+
+
+    function updateList() {
+        var myNode = document.getElementById("containerDiv");
+        myNode.innerHTML = '';
+        for (var i = 0; i < studentArray.length; i++) {
+
+            var div = document.createElement("div");
+
+            var labelName = document.createElement("label");
+            labelName.style.fontWeight = "bold";
+            labelName.style.fontSize = '110%';
+            labelName.style.width = '90%';
+            labelName.style.color = 'white';
+           // labelName.style.backgroundColor = 'red';
+            labelName.style.cssFloat = "left";
+            labelName.style.textAlign = 'left';
+            labelName.style.paddingLeft = '2%';
+            labelName.innerHTML = studentArray[i]["studentName"];
+            div.appendChild(labelName);
+
+            var editButton = document.createElement("button");
+            editButton.innerHTML ="Edit";
+            editButton.style.color = "#3F51A3";
+            editButton.style.fontSize = '15px'
+            editButton.style.width = '7%';
+            editButton.style.height = '25%';
+            editButton.style.marginTop = '1%';
+            editButton.tag = "e" + studentArray[i]["roll"];
+            editButton.style.backgroundColor = 'white';
+            editButton.addEventListener('click', function () {
+                var index = this.tag;
+                onEditCall(index);
+            })
+
+            editButton.style.borderColor = "gray";
+            editButton.style.borderRadius = "5px 5px 5px 5px";
+            editButton.style.boxShadow = "-2px 3px 9px 0px gray";
+
+            div.appendChild(editButton);
+
+
+
+
+
+            var labelRoll = createLabel("Roll no  " + studentArray[i]["roll"],"roll");
+            div.appendChild(labelRoll);
+            var labelMaths = createLabel("Maths  " +  studentArray[i]["maths"],"maths");
+            div.appendChild(labelMaths);
+            var labelHindi = createLabel("Hindi  " +  studentArray[i]["hindi"],"hindi");
+            div.appendChild(labelHindi);
+            var labelEnglish = createLabel("English  " + studentArray[i]["english"],"english");
+            div.appendChild(labelEnglish);
+            var labelScience = createLabel("Science  " + studentArray[i]["science"],"science");
+            div.appendChild(labelScience);
+            var labelHistory = createLabel("History  " + studentArray[i]["history"],"history");
+            div.appendChild(labelHistory);
+
+            var deleteButton = document.createElement("button");
+            deleteButton.innerHTML ="Delete";
+            deleteButton.style.color = "#3F51A3";
+            deleteButton.tag = studentArray[i]["roll"];
+            deleteButton.style.fontSize = '15px'
+            deleteButton.style.width = '7%';
+            deleteButton.style.height = '25%';
+            deleteButton.style.cssFloat = "right";
+            deleteButton.addEventListener('click', function () {
+                var index = this.tag;
+                studentArray = studentArray.filter(function (value2) {
+                    return value2.roll != index;
+                });
+                updateList();
+            })
+            deleteButton.style.backgroundColor = 'white';
+            deleteButton.style.borderColor = "gray";
+            deleteButton.style.borderRadius = "5px 5px 5px 5px";
+            deleteButton.style.boxShadow = "-2px 3px 9px 0px gray";
+            deleteButton.style.marginBottom = "2%";
+            deleteButton.style.marginRight = "1%";
+
+            div.appendChild(deleteButton);
+
+            /* var html = '<div style="height: 80%;background-color: white;width: 99%;  float: left;"><ul>';
+
+             html+= "< style='float: left; font-weight: bold; font-size: large'>"+studentArray[i]["studentName"]+"</>";
+             html+= "<p style='float: left;'>Roll No + "+studentArray[i]["roll"]+"</p>";
+             html+= '</ul></div>';
+ */
+           // div.innerHTML = html;
+
+           // div.innerHTML = studentArray[i];
+            div.style.width = '98%';
+            div.style.height = '15%';
+            div.style.backgroundColor = '#3F51A3';
+            div.style.borderWidth = '1px';
+            div.style.borderStyle = 'solid';
+            div.style.borderColor = '';
+            div.style.borderRadius = '10px';
+            div.style.marginLeft = "1%";
+            div.style.marginRight = "1%";
+            div.style.borderColor="silver";
+            div.style.boxShadow= "1px 1px 16px #888888";
+            document.getElementById("containerDiv").appendChild(div);
+            }
+        // for (var i = 0; i < studentArray.length; i++) {
+        //     var tr = document.createElement('tr');
+        //
+        //
+        //     for (var key in studentArray[i]) {
+        //         var td = self.createTableElement(key, studentArray[i], i);
+        //         tr.appendChild(td);
+        //     }
+        //
+        //     document.getElementById("table").appendChild(tr);
+        // }
+
+    }
+
+    function createLabel(value,subject) {
+        var label = document.createElement("label");
+        // labelRoll.style.fontWeight = "bold";
+        label.style.fontSize = '100%';
+        label.style.color = 'gray';
+        //labelRoll.style.backgroundColor = 'red';
+        label.style.cssFloat = "left";
+        label.style.color = 'white';
+        label.style.textAlign = 'left';
+        label.style.paddingLeft = '2%';
+        label.innerHTML = value;
+
+        if(subject == "maths"||subject == "hindi"||subject == "english"||subject == "science"||subject == "history")
+        {
+            //label.style.width = '90%';
+        }
+        else{
+            label.style.width = '100%';
+
+        }
+        return label;
+
+    }
+
+    function onEditCall(index) {
+        var result = index.slice(1, 5);
+
+        for (var i = 0; i < studentArray.length; i++) {
+            if (studentArray[i].roll == result) {
+                document.form1.elements["studentName"].value = studentArray[i].studentName;
+                document.form1.elements["roll"].value = studentArray[i].roll;
+                document.form1.elements["maths"].value = studentArray[i].maths.split("(")[0];
+                document.form1.elements["english"].value = studentArray[i].english.split("(")[0];
+                document.form1.elements["hindi"].value = studentArray[i].hindi.split("(")[0];
+                document.form1.elements["science"].value = studentArray[i].science.split("(")[0];
+                document.form1.elements["history"].value = studentArray[i].history.split("(")[0];
+            }
+        }
+    }
+
+    function createTableElement(value, obj, arrayIndex) {
+
+            var div = document.createElement("div");
+
+            var html = '<div style="height: 20%;background-color: #3F51A3;width: 100%"><ul>';
+
+            html+= "<p>"+obj["roll"]+"</p>";
+            html+= '</ul></div>';
+
+            div.innerHTML = html;
+            div.style.width  = '100%';
+            div.style.height  = '20%';
+            div.align = "center";
+            return div;
+
+/*
+        if (value === "action") {
+            var td = document.createElement("td");
+            var deleteButton = document.createElement('button');
+            deleteButton.style.width = '60px';
+            deleteButton.style.marginLeft = '5px';
+
+            deleteButton.innerHTML = "Delete";
+            deleteButton.tag = obj["roll"];
+            deleteButton.addEventListener('click', function () {
+                var index = this.tag;
+                studentArray = studentArray.filter(function (value2) {
+                    return value2.roll != index;
+                });
+                updateList();
+            })
+            td.appendChild(deleteButton);
+
+
+            var editButton = document.createElement('button');
+            editButton.tag = "e" + obj["roll"];
+            editButton.style.width = '60px';
+            editButton.style.marginLeft = '5px';
+
+
+            editButton.addEventListener('click', function () {
+                var index = this.tag;
+                onEditCall(index);
+            })
+
+            editButton.innerHTML = "Edit";
+            td.appendChild(editButton);
+
+            td.align = "center";
+            return td;
+        }
+        else {
+            var td = document.createElement("td");
+            if (value == "index") {
+                td.innerHTML = arrayIndex;
+            }
+            else {
+                td.innerHTML = obj[value];
+
+            }
+            td.align = "center";
+            return td;
+        }*/
+    }
+
+</script>
+
+<style>
+    html, body, #fullheight {
+        min-height: 100% !important;
+        height: 100%;
+        margin: 0
+    }
+
+    #fullheight {
+        width: 100%;
+        background: #1BBC9B;
+        padding: 10px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: silver;
+        box-shadow: 1px 1px 16px #888888;
+
+    }
+
+    #form1 {
+        min-height: 100% !important;
+        height: 100%;
+        margin: 0;
+        width: 100%;
+        padding: 2px;
+
+    }
+
+    #para {
+        background-color: orange;
+    }
+
+    input{
+        display: block;
+        /* width: 100%; */
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        box-shadow: 1px 1px 1px #ffffff;
+        height: 2%;
+        position: absolute;
+        width: 12% !important;
+        box-shadow: inset 0px 0px 4px 0px black;
+    }
+    label{
+        line-height: 2;
+     }
+
+    .savebutton{
+        width: 8%!important;
+        height: 5%!important;
+        background-color: #3F51A3;
+        position: absolute;
+        color: white;
+        font-size: initial;
+        border-radius: 5px 5px 5px 5px;
+        box-shadow: -4px 3px 9px 0px black;
+        border-color: #3F51A3;
+        margin-left: 3%;
+    }
+
+    .cancelbutton{
+        width: 8%!important;
+        height: 5%!important;
+        background-color: #3F51A3;
+        position: absolute;
+        color: white;
+        font-size: initial;
+        border-radius: 5px 5px 5px 5px;
+        box-shadow: -4px 3px 9px 0px black;
+        border-color: #3F51A3;
+        margin-left: 15%;
+    }
+
+</style>
+
+</html>
+
